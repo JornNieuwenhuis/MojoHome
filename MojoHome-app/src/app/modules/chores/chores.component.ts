@@ -18,7 +18,7 @@ export class ChoresComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        
     }
 
 }

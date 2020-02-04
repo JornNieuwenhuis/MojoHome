@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Renderer2, OnChanges } from '@angular/core';
+import { BreadService } from 'src/app/service/bread.service';
 
 @Component({
     selector: 'calcubread',
@@ -9,6 +10,8 @@ export class CalcubreadComponent implements OnInit, OnChanges {
 
     @Input() activeBlock: string;
     @Input() blockName: string;
+
+    //TODO: move all data to breadService
 
     public baseRecipe = [
         { 'name': 'water', 'amount': 270 },
@@ -37,11 +40,14 @@ export class CalcubreadComponent implements OnInit, OnChanges {
     public focusInputEl;
 
     constructor(
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private breadService: BreadService
     ) { }
 
     ngOnInit() {
         this.focusInputEl = document.getElementById('bread-amount-input');
+
+        this.breadService.getRecipes();
     }
 
     ngOnChanges(){

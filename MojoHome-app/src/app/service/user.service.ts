@@ -10,11 +10,7 @@ export class UserService {
 	constructor(private http: HttpClient) { }
 
 	public findAll() {
-		console.log('in service');
-		
-		return this.http.get('//localhost:8080/api/findAll').subscribe(res => 
-			console.log(res)
-		);
+		return this.http.get('//localhost:8080/api/user/findAll');
 	}
 
 

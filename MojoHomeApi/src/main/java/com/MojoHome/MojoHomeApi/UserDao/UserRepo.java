@@ -22,7 +22,7 @@ public class UserRepo {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	@RequestMapping(value="/api/findAll")
+	@RequestMapping(value="/api/user/findAll")
 	public List<User> findAll() {
 		TypedQuery<User> namedQuery = entityManager.createNamedQuery("find_all_users", User.class);
 		return namedQuery.getResultList();
