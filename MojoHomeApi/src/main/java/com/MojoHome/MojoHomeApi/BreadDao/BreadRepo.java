@@ -32,6 +32,14 @@ public class BreadRepo {
 
         TypedQuery<BreadRecipe> breadQuery = entityManager.createNamedQuery("get_all_bread_recipes", BreadRecipe.class);
         List<BreadRecipe> result = breadQuery.getResultList();
+
+        for (BreadRecipe breadRecipe : result) {
+            TypedQuery<Ingredient> ingredientQuery = entityManager.createNamedQuery("get_ingredients", Ingredient.class);
+            ingredientQuery.setParameter(1, breadRecipe.getId());
+            List<Ingredient> ingredients = ingredientQuery.getResultList();
+            breadRecipe.setIngredients(ingredients);
+        }
+
 		return result;
     }
 

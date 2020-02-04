@@ -6,7 +6,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Id;
 
 @Entity
-@NamedQuery(name="get_ingredients", query="SELECT i FROM Ingredient i WHERE breadrecipe_id = ?1")
+@NamedQuery(name="get_ingredients", query="SELECT i FROM Ingredient i WHERE breadId = ?1")
 public class Ingredient {
 
     @Id

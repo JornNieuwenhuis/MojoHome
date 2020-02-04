@@ -1,9 +1,12 @@
 package com.MojoHome.MojoHomeApi.Entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Id;
 
 @Entity
@@ -16,6 +19,9 @@ public class BreadRecipe {
     private int id;
 
     private String name;
+
+    @Transient
+    private List<Ingredient> ingredients;
     
     public BreadRecipe() {
 
@@ -58,5 +64,19 @@ public class BreadRecipe {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    /**
+     * @return the ingredients
+     */
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    /**
+     * @param ingredients the ingredients to set
+     */
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
