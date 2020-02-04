@@ -1,0 +1,33 @@
+<div class="content">
+    <div class="bread-amount-input">
+        <div>
+            <input placeholder="Hoeveel broodjes wil je? =)" id="bread-amount-input"
+                (change)="updateBroodjesAmount($event.target.value)" (keypress)="shrinkInput($event)">
+        </div>
+    </div>
+    <div class="broodjes-container">
+        <ng-container *ngFor="let broodje of broodjes">
+            <div class="broodje-item" [ngClass]="(broodjes.length % 2 != 0) ? 'uneven' : 'even'">
+                <div>
+                    <input class="broodjes-inputs" placeholder="{{ broodje.name }}" id="weight-input{{broodje.name}}"
+                        (change)="updateBroodjeWeight($event.target.value, broodje.name)">
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="footer" *ngIf="broodjes.length > 0">
+        <div class="total-weight" *ngIf="broodjes.length > 0">
+            Totaalgewicht: {{ totalBroodjesWeight }}
+        </div>
+        <div class="recipe-table" *ngFor="let ingredient of ingredients">
+            <div class="ingredient">
+                {{ ingredient.name }}
+            </div>
+            <div class="amount">
+                {{ ingredient.amount }}
+            </div>
+        </div>
+    </div>
+
+</div>

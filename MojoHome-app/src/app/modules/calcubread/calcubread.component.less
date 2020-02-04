@@ -1,0 +1,112 @@
+@import '../../../core/default.less';
+
+.content{
+    position: relative;
+}
+
+.bread-amount-input{
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+    padding-top: 105px;
+    transition: padding 500ms ease-in-out;
+}
+
+.bread-amount-input input{
+    color: white;
+    font-size: 48px;
+    width: calc(100% - 40px);
+    height: 150px;
+    padding: 20px 20px 20px 40px;
+    box-sizing: border-box;
+    border: 2px solid @mainBlue;
+    border-radius: 4px;
+    background-color: @mainBlue;
+    resize: none;
+    transition: padding 500ms ease-in-out, width 300ms ease-in-out, height 500ms ease-in-out, font-size 500ms ease-in-out;
+}
+
+.bread-amount-input input:focus {
+    background-color: @mainBlueActive;
+}
+
+input:focus{
+    border-color: white !important;
+    outline: 1px solid white !important;
+    box-shadow: 0 0 0 1pt white !important;
+}
+
+.bread-amount-input input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+    font-size: 48px;
+}
+
+.bread-amount-input input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+}
+
+.bread-amount-input input::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
+
+.broodjes-container{
+    margin-bottom: 10px;
+}
+
+.broodje-item{
+    width: 100px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.broodje-item input{
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    height: 30px;
+    padding: 20px 0px 20px 0px;
+    box-sizing: border-box;
+    border: 2px solid @mainBlue;
+    border-radius: 4px;
+    background-color: @mainBlueActive;
+    resize: none;
+    text-align: center;
+}
+
+.total-weight{
+    color: @mainBlue;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    font-weight: 600;
+}
+
+.broodje-item input::placeholder{
+    color: white;
+}
+
+.footer{
+    position: absolute;
+    background-color: white;
+    border-radius: 25px;
+    top: 280px;
+    right: 70px;
+}
+
+.recipe-table{
+    display: inline-block;
+    margin: 25px;
+    background-color: @mainBlue;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.reciple-table.ingredient{
+    margin: 30px 50px 0px 50px;
+}
+
+.reciple-table.amount{
+    margin: 0px 50px 30px 50px;
+}

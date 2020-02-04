@@ -1,0 +1,107 @@
+@import '../../../core/default.less';
+
+.chores{
+    position: relative;
+
+    .noChoNoMo{
+        img{
+            width: 60%;
+            margin-top: 20px;
+        }
+    }
+}
+
+.add-chore{
+    margin-right: 85px;
+
+    .button{
+        background-color: @mainBlue;
+    }
+}
+
+.chore-overview{
+
+    display: inline-block;
+    max-height: 390px;
+    width: 96%;
+    overflow-y: auto;
+    padding-right: 10px;
+    padding-left: 15px;
+
+    .chore-item:first-child{
+        margin-top: 0;
+    }
+
+    .chore-item{
+
+        margin: 25px 0;
+        height: 25px;
+        padding: 5px 5px 2px 5px;
+        background-color: white;
+        color: @mainBlue;
+        transition: height 300ms ease-in-out, padding 100ms ease-in-out;
+        cursor: pointer;
+
+        > div{
+            display: inline-block;
+        }
+
+        &.selected{
+            height: 74px;
+            align-content: center;
+            padding-top: 10px;
+        }
+
+        .chore-name{
+            text-align: left;
+            width: 45%;
+            font-weight: 600;
+            transition: opacity 1000ms linear;
+
+            div{
+                margin-bottom: 4px;
+            }
+        }
+        .days-remaining{
+            width: 45%;
+
+            &.urgent{
+                color: red;
+            }
+            &.upcoming{
+                color: orange;
+            }
+            &.noHurries{
+                color: green;
+            }
+
+            .edit-chore{
+                color: @mainBlue;
+
+                .updateRecurrence{
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+            }
+
+            div{
+                margin-bottom: 4px;
+            }
+
+        }
+        .complete{
+            text-align: right;
+            width: 10%;
+        }
+
+        .button{
+            background-color: @mainBlue;
+        }
+    }
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: @accentOrange;
+}

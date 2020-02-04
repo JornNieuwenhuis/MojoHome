@@ -1,0 +1,19 @@
+<div class="content" [ngClass]="activeBlock == blockName ? 'active' : 'inactive'">
+
+    <div class="title">
+        <h2>{{moduleName}}</h2>
+    </div>
+
+    <div class="container">
+
+        <ng-container *ngIf="moduleName == 'chores'">       
+            <chores clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></chores>           
+        </ng-container>
+
+        <ng-container *ngIf="moduleName == 'calcubread'">
+            <calcubread clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></calcubread>   
+        </ng-container>
+        
+    </div>
+    
+</div>

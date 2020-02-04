@@ -1,0 +1,35 @@
+@import '../../../core/default.less';
+
+.header{
+    background-color: white;
+    height: 100%;
+    display: inline-block;
+    width: 100%;
+    transition: background-color 1s ease-in-out;
+}
+
+.header:hover h1{
+    text-transform: uppercase;
+    width: 1460px;
+    color: @mainGreen;
+}
+
+#title-header.startup{
+    text-transform: uppercase;
+    width: 1460px;
+    color: @accentRed;
+}
+
+h1{
+    color: @mainBlue;
+    font-size: 32px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-transform: lowercase;
+    width: 220px;
+    transition: width 1s ease-in-out, color 1s ease-in-out;
+}
+
+.content{
+    margin-bottom: 25px;
+}
+

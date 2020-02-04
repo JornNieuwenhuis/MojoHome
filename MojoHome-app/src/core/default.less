@@ -1,0 +1,59 @@
+.body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+@mainGreen:         #c6dd52;
+@mainBlue:          #3ca9a1;
+@mainBlueActive:    #46bdb5;
+@accentRed:         #df3d5e;
+@accentOrange:      #fbb819;
+@accentPurple:      #6d4a76;
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: rgb(230, 230, 230);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: @mainBlue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: @accentPurple;
+}
+
+.button {
+    border: none;
+    color: white;
+    font-size: 12px;
+    transition: padding 800ms ease-in-out; 
+    cursor: pointer;
+}
+
+.button:hover{
+    opacity: 0.7;
+}
+
+.selected {
+    .button{
+        padding: 15px 25px;
+    }
+}
+
+.buttons-bar{
+    position: absolute;
+    top: -29px;
+    text-align: right;
+    width: 100%;
+}

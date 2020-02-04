@@ -1,0 +1,11 @@
+<div class="title">
+    <app-title></app-title>
+</div>
+
+<div class="grid">
+    <ng-container *ngFor="let block of blocksList">
+        <div class="module startup" [ngClass]="block.name">
+            <block-view [moduleName]="block.module" [blockName]="block.name"></block-view>
+        </div>
+    </ng-container>
+</div>
