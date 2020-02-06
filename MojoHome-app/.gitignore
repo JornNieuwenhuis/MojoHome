@@ -44,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Font-Awesome stuff
+fontawesome-free-5.12.1-web/

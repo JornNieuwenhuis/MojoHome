@@ -4,8 +4,13 @@
 
 <div class="grid">
     <ng-container *ngFor="let block of blocksList">
-        <div class="module startup" [ngClass]="block.name">
+        <div *ngIf="block.module != ''; else unused" class="module startup" [ngClass]="block.name">
             <block-view [moduleName]="block.module" [blockName]="block.name"></block-view>
         </div>
+        <ng-template #unused>
+            <div class="module startup unused-block">
+
+            </div>
+        </ng-template>
     </ng-container>
 </div>

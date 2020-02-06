@@ -7,10 +7,13 @@ import { HttpClient } from '@angular/common/http';
 export class BreadService {
 
 	public breadRecipes: 	  any = [];
-	public activeRecipeIndex: number = 0;
+	public activeRecipeIndex: number = 0; // 0: PdeC, 1 Papa Secos
 
 	constructor(private http: HttpClient) { }
 
+    /* 
+    * Gets basic bread recipes
+    */
 	public getRecipes() {
 		let promise = new Promise((resolve, reject) => {
             this.http.get('//localhost:8080/api/bread/getRecipes')

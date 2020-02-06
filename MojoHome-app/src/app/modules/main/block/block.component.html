@@ -6,12 +6,11 @@
 
     <div class="container">
 
-        <ng-container *ngIf="moduleName == 'chores'">       
-            <chores clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></chores>           
-        </ng-container>
 
-        <ng-container *ngIf="moduleName == 'calcubread'">
-            <calcubread clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></calcubread>   
+        <ng-container [ngSwitch]="moduleName">
+            <chores     *ngSwitchCase="'chores'"     clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></chores>
+            <calcubread *ngSwitchCase="'calcubread'" clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></calcubread>   
+            <todo       *ngSwitchCase="'todo'"       clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></todo>   
         </ng-container>
         
     </div>

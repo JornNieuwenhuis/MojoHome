@@ -11,9 +11,9 @@ import { UserService } from 'src/app/service/user.service';
 export class MainComponent implements OnInit {
 
     public blocksList = [
-        { name: "block-1", module: "chores"}, { name: "block-2", module: "calcubread"},
-        { name: "block-3", module: ""},       { name: "block-4", module: ""},
-        { name: "block-5", module: ""},       { name: "block-6", module: ""}
+        { name: "block-1", module: "todo"},       { name: "block-2", module: "chores"},
+        { name: "block-3", module: "calcubread"}, { name: "block-4", module: ""},
+        { name: "block-5", module: ""},           { name: "block-6", module: ""}
     ]
 
     constructor() { }

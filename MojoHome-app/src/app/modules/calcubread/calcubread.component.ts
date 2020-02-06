@@ -11,7 +11,7 @@ export class CalcubreadComponent implements OnInit, OnChanges {
     @Input() activeBlock: string;
     @Input() blockName: string;
 
-    public ingredients = {'name': '', 'amount': 0};
+    public ingredients = [];
     public tempBroodjesName: string;
     public broodjes = [];
     public multiplier: number = 0;
@@ -60,7 +60,7 @@ export class CalcubreadComponent implements OnInit, OnChanges {
     }
 
     public updateBroodjesAmount(amount) {
-        this.ingredients = {'name': '', 'amount': 0};
+        this.ingredients.length = 0;
         this.broodjes.length = 0;
         for (let i = 0; i < amount; i++) {
             this.broodjes[i] = { 'name': 'Broodje ' + (i + 1), 'weight': 0 };
@@ -101,8 +101,9 @@ export class CalcubreadComponent implements OnInit, OnChanges {
     }
 
     public resetAnimateBroodjes(inputEl){
-        this.broodjes.length = 0;
         inputEl.value = '';
+        this.ingredients.length = 0;
+        this.broodjes.length    = 0;
 
         let amountBroodjesDiv = inputEl.parentElement.parentElement;
         this.renderer.setStyle(amountBroodjesDiv, 'padding-top', '105px');

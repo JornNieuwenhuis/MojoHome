@@ -20,14 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 @Transactional
+@RequestMapping(value="api/bread/")
 public class BreadRepo {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-    
     @PersistenceContext
     EntityManager entityManager;
 
-    @RequestMapping(value="api/bread/getRecipes")
+    @RequestMapping(value="/getRecipes")
     public List<BreadRecipe> getRecipes() {
 
         TypedQuery<BreadRecipe> breadQuery = entityManager.createNamedQuery("get_all_bread_recipes", BreadRecipe.class);
