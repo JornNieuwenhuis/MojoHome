@@ -1,7 +1,7 @@
 <div class="content">
     <div class="buttons-bar">
         <div class="add-item" (click)="todoService.addTodoItem()">
-            <i class="fas fa-plus"></i>
+            <i>+</i>
         </div>
     </div>
     <div class="todo-list">
@@ -30,7 +30,7 @@
 
                 <div class="todo-item completed">
                     <div class="complete-item pointer" title="Uncheck item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
-                        <i class="fas fa-check"></i>
+                        <i>V</i>
                     </div>
                     
                     <div class="item-input">
