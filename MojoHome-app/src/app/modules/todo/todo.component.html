@@ -1,6 +1,6 @@
 <div class="content">
     <div class="buttons-bar">
-        <div class="add-item" (click)="todoService.addTodoItem()">
+        <div class="add-item pointer" (click)="todoService.addTodoItem()">
             <i>+</i>
         </div>
     </div>
@@ -11,7 +11,7 @@
 
                 <div class="todo-item">
                     <div class="complete-item pointer" title="Check item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
-                        
+                        <i></i>
                     </div>
                     
                     <div class="item-input">
