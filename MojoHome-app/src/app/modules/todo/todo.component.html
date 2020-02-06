@@ -1,0 +1,48 @@
+<div class="content">
+    <div class="buttons-bar">
+        <div class="add-item" (click)="todoService.addTodoItem()">
+            <i>+</i>
+        </div>
+    </div>
+    <div class="todo-list">
+
+        <ng-container *ngFor="let item of todoService.todoList; let listIndex = index">
+            <ng-container *ngIf="!item.complete">
+
+                <div class="todo-item">
+                    <div class="complete-item pointer" title="Check item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
+                        
+                    </div>
+                    
+                    <div class="item-input">
+                        <input 
+                        [ngModel]="item.name"
+                        type="text"
+                        (change)="todoService.updateTodoItem(item.id, $event.target.value, false, listIndex)">
+                    </div>
+                </div>     
+
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngFor="let item of todoService.todoList; let listIndex = index">
+            <ng-container *ngIf="item.complete">
+
+                <div class="todo-item completed">
+                    <div class="complete-item pointer" title="Uncheck item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
+                        <i>V</i>
+                    </div>
+                    
+                    <div class="item-input">
+                        <input 
+                        [ngModel]="item.name"
+                        type="text"
+                        (change)="todoService.updateTodoItem(item.id, $event.target.value, false, listIndex)">
+                    </div>
+                </div>     
+
+            </ng-container>
+
+        </ng-container>
+    </div>
+</div>
