@@ -15,7 +15,7 @@ export class PopupComponent implements OnInit {
 	}
 
 	public closePopup(target){
-		let containerDiv = target.closest("div.popup-container");
+		let containerDiv = target.closest("div.popup-overlay");
 		this.renderer.addClass(containerDiv, "hide");
 	}
 

@@ -1,0 +1,82 @@
+<div class="content">
+    <div class="buttons-bar">
+        <div class="add-item pointer" (click)="showPopup($event.target)">
+            <i>+</i>
+        </div>
+    </div>
+    <div class="chores-list">
+
+        <ng-container *ngFor="let item of choresService.choresList; let listIndex = index">
+            <ng-container *ngIf="!item.complete">
+
+                <div class="chores-item" title={{item.name}}>
+                    <div class="complete-item pointer" title="Check item" (click)="choresService.removeChoresItem(item.id, listIndex)">
+                        <i>X</i>
+                    </div>
+                    
+                    <div class="item-input">
+                        <input
+                        disabled 
+                        [ngModel]="item.name"
+                        type="text"
+                        (change)="choresService.updateChoresItem($event.target.value, 'name', listIndex)">
+                    </div>
+
+                    <div class="recurrence">
+                        {{getRecurrenceString(item.recurrenceInterval, item.recurrenceAmount)}}
+                    </div>
+                </div>     
+
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<popup [popupName]="popupName">
+    <div class="chores-popup content">
+        <div class="title">
+            <h2>Voeg een taak toe:</h2>
+        </div>
+        <div class="add-chore-container">
+
+            <!-- Chore name -->
+            <div class="chore-name">
+                <div class="chore-name-title">
+                    Naam: &nbsp;
+                </div>
+                <div class="chore-name-input">
+                    <input [(ngModel)]="choresService.newChore['name']">
+                </div>
+            </div>
+
+            <!-- Chore interval -->
+            <div class="chore-interval">
+                <div class="chore-interval-title">
+                    Iedere: &nbsp;
+                </div>
+                <div class="chore-interval-number-input">
+                    <select [(ngModel)]="choresService.newChore['recurrenceAmount']">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="chore-interval-input">
+                    <select [(ngModel)]="choresService.newChore['recurrenceInterval']">
+                        <option value="day">{{choresService.newChore['recurrenceAmount'] > 1 ? 'dagen' : 'dag'}}</option>
+                        <option value="week">{{choresService.newChore['recurrenceAmount'] > 1 ? 'weken' : 'week'}}</option>
+                        <option value="month">{{choresService.newChore['recurrenceAmount'] > 1 ? 'maanden' : 'maand'}}</option>
+                        <option value="year">jaar</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+        <div class="submit-button">
+            <button (click)="choresService.addChoresItem()">Toevoegen</button>
+        </div>
+    </div>
+</popup>

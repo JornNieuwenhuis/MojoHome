@@ -1,6 +1,6 @@
 <div class="content">
     <div class="buttons-bar">
-        <div class="add-item pointer" (click)="todoService.addTodoItem()">
+        <div class="add-item pointer" (click)="showPopup($event.target)">
             <i>+</i>
         </div>
     </div>
@@ -9,7 +9,7 @@
         <ng-container *ngFor="let item of todoService.todoList; let listIndex = index">
             <ng-container *ngIf="!item.complete">
 
-                <div class="todo-item">
+                <div class="todo-item" title="{{item.name}}">
                     <div class="complete-item pointer" title="Check item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
                         <i></i>
                     </div>
@@ -28,7 +28,7 @@
         <ng-container *ngFor="let item of todoService.todoList; let listIndex = index">
             <ng-container *ngIf="item.complete">
 
-                <div class="todo-item completed">
+                <div class="todo-item completed" title="{{item.name}}">
                     <div class="complete-item pointer" title="Uncheck item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
                         <i>V</i>
                     </div>
@@ -46,3 +46,19 @@
         </ng-container>
     </div>
 </div>
+
+<popup [popupName]="popupName">
+    <div class="todo-popup content">
+        <div class="title">
+            <h2>Voeg een taak toe:</h2>
+        </div>
+        <div class="add-todo-container">
+            <div class="add-todo-title">
+                Naam: &nbsp;
+            </div>
+            <div class="add-todo">
+                <input (change)="todoService.addTodoItem($event)">
+            </div>
+        </div>
+    </div>
+</popup>

@@ -7,7 +7,7 @@
             <div class="recipe-title">
                 Recept: &nbsp;
             </div>
-            <div class="recipe-name">
+            <div class="recipe-name" *ngIf="breadService.breadRecipes.length > 0">
                 {{getActiveRecipeName()}}
             </div>
         </div>
@@ -47,7 +47,7 @@
 <popup [popupName]="popupName">
     <div class="calcubread-popup content">
         <div class="title">
-            <h2>Kies je recept of voeg er een toe:</h2>
+            <h2>Kies een recept of voeg er een toe:</h2>
         </div>
         <div class="select-recipe-container">
             <div class="select-recipe-title">

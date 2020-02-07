@@ -1,16 +1,31 @@
 @import '../../../core/default.less';
 
-.popup-container{
-    position: fixed;
-    top: 20%;
-    height: 65%;
-    background-color: white;
-    z-index: 1001;
-    left: 20%;
-    right: 20%;
+.popup-overlay{
 
-    .button-close{
-        text-align: right;
-        padding: 5px 10px;
+    width: 100%;
+    height: 210%;
+    background-color: rgba(0, 0, 0, 0.6);;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2000;
+
+    .popup-container{
+        position: fixed;
+        top: 20%;
+        height: 65%;
+        background-color: white;
+        z-index: 1001;
+        left: 20%;
+        right: 20%;
+    
+        .button-close{
+            text-align: right;
+            padding: 5px 10px;
+        }
     }
+}
+
+#todo-popup > .popup-container, #chores-popup > .popup-container{
+    height: 33% !important;
 }

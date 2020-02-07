@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TodoService {
 
-    public todoList: any = [];
+    public  todoList: any   = [];
     private baseUrl: string = '//localhost:8080/api/todo/';
 
 	    constructor(private http: HttpClient) { }
@@ -34,11 +34,12 @@ export class TodoService {
         /* 
         * Gets the todo-list
         */
-        public addTodoItem() {
-            let newName = prompt("Naam nieuwe taak: ", "");
-            if(newName != ""){
+        public addTodoItem(event: any) {
+            let newTodo = event.target.value;
+            event.target.value = '';
+            if(newTodo != ""){
                 let promise = new Promise((resolve, reject) => {
-                    this.http.post(this.baseUrl + 'addTodoItem', {'name': newName})
+                    this.http.post(this.baseUrl + 'addTodoItem', {'name': newTodo})
                         .toPromise()
                         .then(
                             result => { // Success

@@ -1,107 +1,106 @@
 @import '../../../core/default.less';
 
-.chores{
-    position: relative;
+.chores-list{
 
-    .noChoNoMo{
-        img{
-            width: 60%;
-            margin-top: 20px;
-        }
-    }
-}
-
-.add-chore{
-    margin-right: 85px;
-
-    .button{
-        background-color: @mainBlue;
-    }
-}
-
-.chore-overview{
-
-    display: inline-block;
-    max-height: 390px;
-    width: 96%;
+    width: 100%;
+    height: 100%;
+    max-height: 376px;
     overflow-y: auto;
-    padding-right: 10px;
-    padding-left: 15px;
 
-    .chore-item:first-child{
-        margin-top: 0;
-    }
+    .chores-item{
 
-    .chore-item{
-
-        margin: 25px 0;
-        height: 25px;
-        padding: 5px 5px 2px 5px;
+        position: relative;
         background-color: white;
-        color: @mainBlue;
-        transition: height 300ms ease-in-out, padding 100ms ease-in-out;
-        cursor: pointer;
+        max-width: calc(100% - 10px);
+        height: 40px;
+        margin: 5px;
+        padding-top: 4px;
 
-        > div{
+        .complete-item{
+            background-color: @accentRed !important;
+            position: absolute;
+            top: 12px;
+            left: 12px;
             display: inline-block;
+            height: 20px;
+            width: 20px;
+            opacity: .5;
+            transition: opacity 250ms ease-in-out;
         }
 
-        &.selected{
-            height: 74px;
-            align-content: center;
-            padding-top: 10px;
+        .recurrence{
+            display: inline-block;
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-style: italic;
         }
 
-        .chore-name{
+        .item-input{
+            
+            position: absolute;
+            left: 48px;
+            top: 6px;
+            display: inline-block;
+            width: 75%;
+
+            input{
+                border: none;
+                color: @accentRed;
+                font-size: 28px;
+                width: 100%;
+            }
+
+            input:focus{
+                outline: red;
+            }
+
+            input:disabled{
+                background-color: white;
+            }
+        }
+    }
+}
+
+.buttons-bar{
+    position: absolute;
+    top: -28px;
+    right: 72px;
+}
+
+popup{
+
+    .content{
+        .title{
+
+        }
+        .add-chore-container{
+
+            height: 100px;
             text-align: left;
-            width: 45%;
-            font-weight: 600;
-            transition: opacity 1000ms linear;
+            padding: 24px;
+            padding-bottom: 0;
 
-            div{
-                margin-bottom: 4px;
-            }
-        }
-        .days-remaining{
-            width: 45%;
-
-            &.urgent{
-                color: red;
-            }
-            &.upcoming{
-                color: orange;
-            }
-            &.noHurries{
-                color: green;
-            }
-
-            .edit-chore{
-                color: @mainBlue;
-
-                .updateRecurrence{
+            .chore-name{
+                .chore-name-title{
                     display: inline-block;
-                    margin-left: 5px;
+                }
+                .chore-name-input{
+                    display: inline-block;
                 }
             }
 
-            div{
-                margin-bottom: 4px;
+            .chore-interval{
+                .chore-interval-title{
+                    display: inline-block;
+                }
+                .chore-interval-number-input{
+                    display: inline-block;
+                }
+                .chore-interval-input{
+                    display: inline-block;
+                }
             }
-
-        }
-        .complete{
-            text-align: right;
-            width: 10%;
-        }
-
-        .button{
-            background-color: @mainBlue;
         }
     }
-
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: @accentOrange;
 }
