@@ -48,19 +48,6 @@ block-view{
   }
 }
 
-/* .module:hover{
-  background-color: white;
-  border: 3px solid yellow;
-  box-shadow: 5px;
-  height: calc(100% - 3px);
-  width: calc(100% - 3px);
-} */
-
-module chores{
-  height: 100%;
-  width: 100%;
-}
-
 .block-1{
   background-color: @mainGreen;
 }
@@ -83,6 +70,11 @@ module chores{
 
 .unused-block{
   opacity: .2;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.unused-block:hover{
+  opacity: .6;
 }
 
 .startup{

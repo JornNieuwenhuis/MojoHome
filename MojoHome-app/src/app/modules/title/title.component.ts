@@ -10,6 +10,12 @@ export class TitleComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.startup();
+
+
+    }
+
+    public startup() {
         setTimeout(() => {
             document.getElementById('title-header').classList.add('startup');
 
@@ -17,8 +23,6 @@ export class TitleComponent implements OnInit {
                 document.getElementById('title-header').classList.remove('startup');
             }, 1500);
         }, 50);
-
-
     }
 
 }
