@@ -13,6 +13,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 import { UserService } from './service/user.service';
 import { TodoComponent } from './modules/todo/todo.component';
+import { PopupComponent } from './basic/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TodoComponent } from './modules/todo/todo.component';
     CalcubreadComponent,
     BlockComponent,
     ClickOutsideDirective,
-    TodoComponent
+    TodoComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

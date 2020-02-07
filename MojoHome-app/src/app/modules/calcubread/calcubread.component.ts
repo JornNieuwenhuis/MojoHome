@@ -17,10 +17,11 @@ export class CalcubreadComponent implements OnInit, OnChanges {
     public multiplier: number = 0;
     public totalBroodjesWeight: number = 0;
     public focusInputEl;
+    public popupName = "calcubread-popup";
 
     constructor(
         private renderer: Renderer2,
-        private breadService: BreadService
+        public breadService: BreadService
     ) { }
 
     ngOnInit() {
@@ -123,5 +124,20 @@ export class CalcubreadComponent implements OnInit, OnChanges {
             return 'active';
         }
         return 'passive';
+    }
+
+    public showPopup(target){
+        let containerDiv = document.getElementById(this.popupName);
+		this.renderer.removeClass(containerDiv, "hide");
+    }
+
+    public getActiveRecipeName(){
+        return this.breadService.breadRecipes[this.breadService.activeRecipeIndex].name;
+    }
+
+    public setRecipe(){
+        if(this.broodjes.length > 0){
+            this.setIngredients();
+        }
     }
 }

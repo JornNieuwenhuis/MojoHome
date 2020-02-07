@@ -1,4 +1,17 @@
 <div class="content">
+    <div class="button-sidebar">
+        <div class="options-button pointer" (click)="showPopup($event.target)">
+            <i title="Options">i</i>
+        </div>
+        <div class="recipe-info">
+            <div class="recipe-title">
+                Recept: &nbsp;
+            </div>
+            <div class="recipe-name">
+                {{getActiveRecipeName()}}
+            </div>
+        </div>
+    </div>
     <div class="bread-amount-input">
         <div>
             <input placeholder="Hoeveel broodjes wil je? =)" id="bread-amount-input"
@@ -29,5 +42,31 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<popup [popupName]="popupName">
+    <div class="calcubread-popup content">
+        <div class="title">
+            <h2>Kies je recept of voeg er een toe:</h2>
+        </div>
+        <div class="select-recipe-container">
+            <div class="select-recipe-title">
+                Recept:
+            </div>
+            <div class="select-recipe">
+                <select [(ngModel)]="breadService.activeRecipeIndex" (change)="setRecipe()">
+                    <option value=0>Pain de Campagne</option>
+                    <option value=1>Papa Secos</option>
+                </select>
+            </div>
+        </div>
+        <div class="add-recipe-container">
+            <div class="add-recipe-title">
+                Maak een nieuw recept:
+            </div>
+            <div class="add-recipe">
+                ... Under Construction ...
+            </div>
+        </div>
+    </div>
+</popup>

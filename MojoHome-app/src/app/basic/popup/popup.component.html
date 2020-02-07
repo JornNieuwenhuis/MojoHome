@@ -1,0 +1,8 @@
+<div class="popup-container hide" id="{{popupName}}">
+    <div class="button-close pointer">
+        <div class="close-button" (click)="closePopup($event.target)">
+            X
+        </div>
+    </div>
+    <ng-content></ng-content>
+</div>

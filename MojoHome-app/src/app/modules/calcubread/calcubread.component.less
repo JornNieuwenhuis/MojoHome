@@ -85,13 +85,14 @@ input:focus{
     position: absolute;
     background-color: white;
     border-radius: 25px;
-    top: 280px;
-    right: 70px;
+    top: 200px;
+    right: 10%;
+    left: 10%;
 }
 
 .recipe-table{
     display: inline-block;
-    margin: 25px;
+    margin: 18px;
     background-color: @mainBlue;
     border-radius: 10px;
     padding: 5px;
@@ -105,4 +106,63 @@ input:focus{
 
 .reciple-table.amount{
     margin: 0px 50px 30px 50px;
+}
+
+.button-sidebar{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .options-button{
+        position: absolute;
+        top: 22px;
+        right: 0;
+    }
+}
+
+.recipe-info{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 246px;
+    text-align: right;
+
+    .recipe-title, .recipe-name{
+        color: white;
+        display: inline-block;
+    }
+}
+
+popup{
+    .content{
+        .title{
+
+        }
+        .select-recipe-container{
+
+            height: 100px;
+            text-align: left;
+            padding: 24px;
+
+            .select-recipe-title{
+                display: inline-block;
+            }
+            .select-recipe{
+                display: inline-block;
+            }
+        }
+        .add-recipe-container{
+
+            text-align: left;
+            padding: 24px;
+
+            .add-recipe-title{
+                
+            }
+            .add-recipe{
+                text-align: center;
+                padding: 75px;
+            }
+        }
+    }
 }
