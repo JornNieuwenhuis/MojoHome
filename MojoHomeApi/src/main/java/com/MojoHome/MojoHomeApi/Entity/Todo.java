@@ -9,6 +9,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name="todo")
 @NamedQuery(name="get_todo_list", query="select t from Todo t")
+@NamedQuery(name="get_todo_list_complete", query="select t from Todo t where complete = 1")
 public class Todo {
 
     @Id

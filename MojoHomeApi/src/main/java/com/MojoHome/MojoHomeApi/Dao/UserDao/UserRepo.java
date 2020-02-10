@@ -1,4 +1,4 @@
-package com.MojoHome.MojoHomeApi.UserDao;
+package com.MojoHome.MojoHomeApi.Dao.UserDao;
 
 import java.util.List;
 

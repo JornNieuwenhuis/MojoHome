@@ -1,4 +1,4 @@
-package com.MojoHome.MojoHomeApi.TodoDao;
+package com.MojoHome.MojoHomeApi.Dao.TodoDao;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class TodoRepo {
     }
 
     /* 
-    * Create a new task
+    * Remove a Todo item
     */
     @RequestMapping(value="/removeTodoItem", method = RequestMethod.POST)
     public void removeTodoItem(@RequestBody() Todo targetTodo){
@@ -67,6 +67,18 @@ public class TodoRepo {
             return;
         }
 		return;
+    }
+
+    /* 
+    * Cleanup completed items
+    */
+    @RequestMapping(value="/cleanup", method = RequestMethod.GET)
+    public List<Todo> cleanup(){
+        List<Todo> completedTodos = entityManager.createNamedQuery("get_todo_list_complete", Todo.class).getResultList();
+        for (Todo todo : completedTodos) {
+            this.removeTodoItem(todo);
+        }
+		return this.getTodoList();
     }
 
 }

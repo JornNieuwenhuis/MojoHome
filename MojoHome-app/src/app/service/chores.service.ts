@@ -108,4 +108,24 @@ export class ChoresService {
         });
         return promise;
     }
+
+    /* 
+    * Complete a chore
+    */
+    public completeChore(id: number) {
+        let promise = new Promise((resolve, reject) => {
+            this.http.post(this.baseUrl + 'completeChore', { 'id': id })
+                .toPromise()
+                .then(
+                    result => { // Success
+                        this.choresList = result;
+                        resolve(result);
+                    },
+                    reject => { // Fail
+                        console.log(reject);
+                    }
+                );
+        });
+        return promise;
+    }
 }

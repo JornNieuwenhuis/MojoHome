@@ -10,8 +10,8 @@
             <ng-container *ngIf="!item.complete">
 
                 <div class="chores-item" title={{item.name}}>
-                    <div class="complete-item pointer" title="Check item" (click)="choresService.removeChoresItem(item.id, listIndex)">
-                        <i>X</i>
+                    <div class="complete-item pointer" title="Voltooien" (click)="choresService.completeChore(item.id)">
+                        <i>V</i>
                     </div>
                     
                     <div class="item-input">
@@ -19,11 +19,12 @@
                         disabled 
                         [ngModel]="item.name"
                         type="text"
-                        (change)="choresService.updateChoresItem($event.target.value, 'name', listIndex)">
+                        (change)="choresService.updateChoresItem($event.target.value, 'name', listIndex)"
+                        [ngClass]="item.colorClass">
                     </div>
 
-                    <div class="recurrence">
-                        {{getRecurrenceString(item.recurrenceInterval, item.recurrenceAmount)}}
+                    <div class="recurrence" title="{{getRecurrenceString(item.recurrenceInterval, item.recurrenceAmount)}}">
+                        {{ getDaysRemainingString(item.daysRemaining) }}
                     </div>
                 </div>     
 

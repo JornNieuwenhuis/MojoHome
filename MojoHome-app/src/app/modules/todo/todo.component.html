@@ -1,6 +1,9 @@
 <div class="content">
     <div class="buttons-bar">
-        <div class="add-item pointer" (click)="showPopup($event.target)">
+        <div class="cleanup pointer" (click)="todoService.cleanup()" title="Taken opschonen">
+            <i>R</i>
+        </div>
+        <div class="add-item pointer" (click)="showPopup($event.target)" title="Nieuwe taak">
             <i>+</i>
         </div>
     </div>

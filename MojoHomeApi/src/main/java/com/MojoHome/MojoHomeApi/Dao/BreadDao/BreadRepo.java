@@ -1,4 +1,4 @@
-package com.MojoHome.MojoHomeApi.BreadDao;
+package com.MojoHome.MojoHomeApi.Dao.BreadDao;
 
 import java.util.Arrays;
 import java.util.List;

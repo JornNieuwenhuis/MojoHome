@@ -99,4 +99,24 @@ export class TodoService {
             });
             return promise;
         }
+
+        /* 
+        * Removes item from todo list
+        */
+        public cleanup() {
+            let promise = new Promise((resolve, reject) => {
+                this.http.get(this.baseUrl + 'cleanup')
+                    .toPromise()
+                    .then(
+                        result => { // Success
+                            this.todoList = result;
+                            resolve(result);
+                        },
+                        reject => { // Fail
+                            console.log(reject);
+                        }
+                    );
+            });
+        return promise;
+    }
 }

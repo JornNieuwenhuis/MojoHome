@@ -1,19 +1,18 @@
 package com.MojoHome.MojoHomeApi.Entity;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Id;
 
 @Entity
 @Table(name = "chores")
 @NamedQuery(name = "get_chores_list", query = "select c from Chore c")
+@NamedQuery(name = "get_chore_by_id", query = "select c from Chore c where c.id = :id")
 public class Chore {
 
     @Id
@@ -23,21 +22,23 @@ public class Chore {
     private String name;
     private String recurrenceInterval;
     private int recurrenceAmount;
-    private Date choreCreationDate;
-    private Date lastCompletionDate;
+    private Date deadline;
+
+    @Transient
+    private String colorClass;
+    @Transient
+    private int daysRemaining;
 
     public Chore() {
 
     }
 
-    public Chore(int id, String name, String recurrenceInterval, int recurrenceAmount, Date choreCreationDate,
-            Date lastCompletionDate) {
+    public Chore(int id, String name, String recurrenceInterval, int recurrenceAmount, Date deadline) {
         this.id = id;
         this.name = name;
         this.recurrenceInterval = recurrenceInterval;
         this.recurrenceAmount = recurrenceAmount;
-        this.choreCreationDate = choreCreationDate;
-        this.lastCompletionDate = lastCompletionDate;
+        this.deadline = deadline;
     }
 
     /**
@@ -97,30 +98,44 @@ public class Chore {
     }
 
     /**
-     * @return the choreCreationDate
+     * @return the deadline
      */
-    public Date getChoreCreationDate() {
-        return choreCreationDate;
+    public Date getDeadline() {
+        return deadline;
     }
 
     /**
-     * @param choreCreationDate the choreCreationDate to set
+     * @param deadline the deadline to set
      */
-    public void setChoreCreationDate(Date choreCreationDate) {
-        this.choreCreationDate = choreCreationDate;
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
     /**
-     * @return the lastCompletionDate
+     * @return the colorClass
      */
-    public Date getLastCompletionDate() {
-        return lastCompletionDate;
+    public String getColorClass() {
+        return colorClass;
     }
 
     /**
-     * @param lastCompletionDate the lastCompletionDate to set
+     * @param colorClass the colorClass to set
      */
-    public void setLastCompletionDate(Date lastCompletionDate) {
-        this.lastCompletionDate = lastCompletionDate;
-    }    
+    public void setColorClass(String colorClass) {
+        this.colorClass = colorClass;
+    }
+
+    /**
+     * @return the daysRemaining
+     */
+    public int getDaysRemaining() {
+        return daysRemaining;
+    }
+
+    /**
+     * @param daysRemaining the daysRemaining to set
+     */
+    public void setDaysRemaining(int daysRemaining) {
+        this.daysRemaining = daysRemaining;
+    }
 }

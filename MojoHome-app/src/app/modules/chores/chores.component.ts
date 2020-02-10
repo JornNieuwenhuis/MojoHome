@@ -60,4 +60,9 @@ export class ChoresComponent implements OnInit {
 		this.renderer.addClass(containerDiv, "hide");
     }
 
+    public getDaysRemainingString(days){
+        let appendString = days == 1 ? " dag" : " dagen";
+        return "Nog " + days + appendString + " te gaan";
+    }
+
 }
