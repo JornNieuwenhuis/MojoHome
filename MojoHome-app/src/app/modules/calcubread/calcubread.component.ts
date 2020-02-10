@@ -16,6 +16,7 @@ export class CalcubreadComponent implements OnInit, OnChanges {
     public broodjes = [];
     public multiplier: number = 0;
     public totalBroodjesWeight: number = 0;
+    public globalWeight: number;
     public focusInputEl;
     public popupName = "calcubread-popup";
 
@@ -68,10 +69,10 @@ export class CalcubreadComponent implements OnInit, OnChanges {
         }
     }
 
-    public updateBroodjeWeight(weight: number, broodje) {
-        for (let i = 0; i < this.broodjes.length; i++) {
-            if (this.broodjes[i]['name'] == broodje) {
-                this.broodjes[i]['weight'] = weight;
+    public updateBroodjeWeight(weight: number, index) {
+        if(index == 0){
+            for (let i = 0; i < this.broodjes.length; i++) {
+               this.broodjes[i]['weight'] = weight;
             }
         }
         this.updateMultiplier();
