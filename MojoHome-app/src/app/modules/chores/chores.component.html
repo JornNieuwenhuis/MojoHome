@@ -76,7 +76,7 @@
             
         </div>
         <div class="submit-button">
-            <button (click)="choresService.addChoresItem()">Toevoegen</button>
+            <button (click)="choresService.addChoresItem(); closePopup($event.target)">Toevoegen</button>
         </div>
     </div>
 </popup>

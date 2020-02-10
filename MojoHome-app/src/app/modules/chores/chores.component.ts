@@ -55,4 +55,9 @@ export class ChoresComponent implements OnInit {
 		this.renderer.removeClass(containerDiv, "hide");
     }
 
+    public closePopup(target){
+        let containerDiv = document.getElementById(this.popupName);
+		this.renderer.addClass(containerDiv, "hide");
+    }
+
 }
