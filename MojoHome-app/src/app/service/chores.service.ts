@@ -48,7 +48,7 @@ export class ChoresService {
                 .toPromise()
                 .then(
                     result => { // Success
-                        this.choresList.push(result);
+                        this.choresList = result;
                         resolve(result);
                     },
                     reject => { // Fail
@@ -56,6 +56,7 @@ export class ChoresService {
                     }
                 );
         });
+        this.newChore.length = 0;
         return promise;
     }
 

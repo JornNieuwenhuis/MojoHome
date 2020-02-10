@@ -17,7 +17,7 @@
                     <div class="item-input">
                         <input
                         disabled 
-                        [ngModel]="item.name"
+                        [(ngModel)]="item.name"
                         type="text"
                         (change)="choresService.updateChoresItem($event.target.value, 'name', listIndex)"
                         [ngClass]="item.colorClass">

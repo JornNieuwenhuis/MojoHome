@@ -79,10 +79,10 @@ public class ChoresRepo {
     * Create a new task
     */
     @RequestMapping(value="/addChoresItem", method = RequestMethod.POST)
-    public Chore addChoresItem(@RequestBody() Chore newChore){
+    public List<Chore> addChoresItem(@RequestBody() Chore newChore){
         newChore.setDeadline(new Date());
         Date newDeadline = this.getNewDeadline(newChore);
-        return entityManager.merge(
+        entityManager.merge(
             new Chore(
                 newChore.getId(), 
                 newChore.getName(), 
@@ -91,6 +91,8 @@ public class ChoresRepo {
                 newDeadline
             )
         );
+
+        return this.getChoresList();
     }
 
     /* 
