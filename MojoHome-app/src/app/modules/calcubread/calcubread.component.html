@@ -19,11 +19,11 @@
         </div>
     </div>
     <div class="broodjes-container">
-        <ng-container *ngFor="let broodje of broodjes">
+        <ng-container *ngFor="let broodje of broodjes; let i = index">
             <div class="broodje-item" [ngClass]="(broodjes.length % 2 != 0) ? 'uneven' : 'even'">
                 <div>
                     <input class="broodjes-inputs" placeholder="{{ broodje.name }}" id="weight-input{{broodje.name}}"
-                        (change)="updateBroodjeWeight($event.target.value, broodje.name)">
+                        [(ngModel)]="broodjes[i]['weight']" (keyup)="updateBroodjeWeight($event.target.value, i)">
                 </div>
             </div>
         </ng-container>

@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class BreadService {
 
 	public breadRecipes: 	  any = [];
-	public activeRecipeIndex: number = 0; // 0: PdeC, 1 Papa Secos
+    public activeRecipeIndex: number = 0; // 0: PdeC, 1 Papa Secos
+    public numOfBroodjes: number = 0;
 
 	constructor(private http: HttpClient) { }
 
