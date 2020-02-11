@@ -7,6 +7,27 @@
     max-height: 376px;
     overflow-y: auto;
 
+    .todo-item:hover{
+        background-color: white !important;
+
+        .item-input{
+            input{
+                background-color: white !important;
+                border-bottom: 1px solid @greyColor;
+            }
+        }
+
+        .remove-icon, .edit-icon{
+            i{
+                opacity: .75;
+                color: @greyColor;
+            }
+            i:hover{
+                color: red;
+            }
+        }
+    }
+
     .todo-item{
 
         &.completed{
@@ -16,30 +37,47 @@
             .item-input input{
                 text-decoration: line-through; 
             }
+
+            .complete-item{
+
+                border-radius: 1;
+                top: 11px;
+                left: 11px;
+                height: 20px;
+                width: 20px;
+                border: 1px solid grey;
+                background-color: white;
+
+                i.fa-times{
+                    opacity: 0;
+                }
+
+                i{
+                    color: @noHurryColor;
+                    opacity: 1;
+                }
+            }
+            .complete-item:hover{
+                i{
+                    opacity: 0;
+                }
+                i.fa-times{
+                    opacity: .8;
+                    top: 0px;
+                    left: 2px;
+                    height: 8px;
+                    width: 8px;
+                    font-size: 20px;
+                }
+            }
         }
 
         position: relative;
-        background-color: white;
+        background-color: @inactiveRow;
         max-width: calc(100% - 10px);
         height: 40px;
         margin: 5px;
         padding-top: 4px;
-
-        .complete-item{
-            background-color: @mainGreen !important;
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            display: inline-block;
-            height: 20px;
-            width: 20px;
-            opacity: .5;
-            transition: opacity 250ms ease-in-out;
-        }
-
-        .complete-item:hover{          
-            opacity: 1;
-        }
 
         .item-input{
             
@@ -50,6 +88,7 @@
             width: calc(100% - 52px);
 
             input{
+                background-color: @inactiveRow;
                 border: none;
                 color: @mainGreen;
                 font-size: 28px;

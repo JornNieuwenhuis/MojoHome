@@ -1,10 +1,10 @@
 <div class="content">
     <div class="buttons-bar">
         <div class="cleanup pointer" (click)="todoService.cleanup()" title="Taken opschonen">
-            <i>R</i>
+            <i class="fa fa-refresh" aria-hidden="true"></i>
         </div>
         <div class="add-item pointer" (click)="showPopup($event.target)" title="Nieuwe taak">
-            <i>+</i>
+            <i class="fa fa-plus"></i>
         </div>
     </div>
     <div class="todo-list">
@@ -12,9 +12,9 @@
         <ng-container *ngFor="let item of todoService.todoList; let listIndex = index">
             <ng-container *ngIf="!item.complete">
 
-                <div class="todo-item" title="{{item.name}}">
+                <div class="todo-item list-item" title="{{item.name}}">
                     <div class="complete-item pointer" title="Check item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
-                        <i></i>
+                        <i class="fa fa-check" aria-hidden="true"></i>
                     </div>
                     
                     <div class="item-input">
@@ -31,9 +31,10 @@
         <ng-container *ngFor="let item of todoService.todoList; let listIndex = index">
             <ng-container *ngIf="item.complete">
 
-                <div class="todo-item completed" title="{{item.name}}">
+                <div class="todo-item list-item completed" title="{{item.name}}">
                     <div class="complete-item pointer" title="Uncheck item" (click)="todoService.updateTodoItem(item.id, item.name, !item.complete, listIndex)">
-                        <i>V</i>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
                     
                     <div class="item-input">

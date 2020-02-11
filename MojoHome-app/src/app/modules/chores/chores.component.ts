@@ -13,6 +13,8 @@ export class ChoresComponent implements OnInit {
 
     public inFocusElementId: any;
     public popupName = "chores-popup";
+    public editChore: Boolean = false;
+    public editChoreIndex: number;
 
     constructor(
         public choresService: ChoresService,
@@ -50,7 +52,14 @@ export class ChoresComponent implements OnInit {
         return "Iedere " + amount + " " + translatedInterval;
     }
 
-	public showPopup(target){
+	public showPopup(target, index?){
+        this.choresService.setUpdateAsItem(false);
+        this.editChore = false;
+        if(index){
+            this.editChore = true;
+            this.editChoreIndex = index;
+            this.choresService.newChore = this.choresService.choresList[index];
+        }
         let containerDiv = document.getElementById(this.popupName);
 		this.renderer.removeClass(containerDiv, "hide");
     }

@@ -9,6 +9,7 @@ export class ChoresService {
     public  choresList: any = [];
     private baseUrl: string = '//localhost:8080/api/chores/';
     public newChore = [];
+    public updateAsItem: boolean;
 
     constructor(private http: HttpClient) { }
 
@@ -60,26 +61,63 @@ export class ChoresService {
         return promise;
     }
 
+    public setUpdateAsItem(value: boolean){
+        this.updateAsItem = value;
+    }
+
     /* 
     * Updates todo item data
     */
     public updateChoresItem(newValue: any, fieldname: string, listIndex: number) {
-        let updatedChore = this.choresList[listIndex];
-        updatedChore[fieldname] = newValue;       
+        let updatedChore;
+        if(!this.updateAsItem){
+            updatedChore = this.choresList[listIndex];
+            updatedChore[fieldname] = newValue; 
+        }
+        else{
+            updatedChore = this.newChore;
+        }
+
+        if(!this.updateAsItem){
+            let promise = new Promise((resolve, reject) => {
+                this.http.post(this.baseUrl + 'updateChore', 
+                                                            { 
+                                                                'id':                 updatedChore["id"], 
+                                                                'name':               updatedChore["name"], 
+                                                                'recurrenceInterval': updatedChore["recurrenceInterval"],
+                                                                'recurrenceAmount':   updatedChore["recurrenceAmount"],
+                                                                'choreCreationDate':  updatedChore["choreCreationDate"],
+                                                                'lastCompletionDate': updatedChore["lastCompletionDate"],
+                                                                'deadline':           updatedChore["deadline"]
+                                                            })
+                    .toPromise()
+                    .then(
+                        result => { // Success
+                            this.choresList = result;
+                            resolve(result);
+                        },
+                        reject => { // Fail
+                            console.log(reject);
+                        }
+                    );
+            });
+            return promise;
+        }
 
         let promise = new Promise((resolve, reject) => {
-            this.http.post(this.baseUrl + 'updateChoresItem', 
+            this.http.post(this.baseUrl + 'updateChoreAsItem', 
                                                         { 
-                                                            'id':             updatedChore["id"], 
-                                                            'name':           updatedChore["name"], 
-                                                            'recurrenceInterval':       updatedChore["recurrenceInterval"],
-                                                            'recurrenceAmount': updatedChore["recurrenceAmount"],
-                                                            'choreCreationDate':    updatedChore["choreCreationDate"],
-                                                            'lastCompletionDate':  updatedChore["lastCompletionDate"]
+                                                            'id':                 updatedChore["id"], 
+                                                            'name':               updatedChore["name"], 
+                                                            'recurrenceInterval': updatedChore["recurrenceInterval"],
+                                                            'recurrenceAmount':   updatedChore["recurrenceAmount"],
+                                                            'choreCreationDate':  updatedChore["choreCreationDate"],
+                                                            'lastCompletionDate': updatedChore["lastCompletionDate"]
                                                         })
                 .toPromise()
                 .then(
                     result => { // Success
+                        this.choresList = result;
                         resolve(result);
                     },
                     reject => { // Fail
@@ -88,6 +126,7 @@ export class ChoresService {
                 );
         });
         return promise;
+
     }
 
     /* 

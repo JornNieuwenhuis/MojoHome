@@ -1,7 +1,7 @@
 <div class="content">
     <div class="buttons-bar">
         <div class="add-item pointer" (click)="showPopup($event.target)">
-            <i>+</i>
+            <i class="fa fa-plus"></i>
         </div>
     </div>
     <div class="chores-list">
@@ -9,9 +9,9 @@
         <ng-container *ngFor="let item of choresService.choresList; let listIndex = index">
             <ng-container *ngIf="!item.complete">
 
-                <div class="chores-item" title={{item.name}}>
-                    <div class="complete-item pointer" title="Voltooien" (click)="choresService.completeChore(item.id)">
-                        <i>V</i>
+                <div class="chores-item list-item" title={{item.name}}>
+                    <div [ngClass]="item.colorClass" class="complete-item pointer" title="Voltooien" (click)="choresService.completeChore(item.id)">
+                        <i class="fa fa-check" aria-hidden="true"></i>
                     </div>
                     
                     <div class="item-input">
@@ -25,6 +25,14 @@
 
                     <div class="recurrence" title="{{getRecurrenceString(item.recurrenceInterval, item.recurrenceAmount)}}">
                         {{ getDaysRemainingString(item.daysRemaining) }}
+                    </div>
+
+                    <div class="edit-icon pointer" title="Taak bewerken" (click)="showPopup($event.target, listIndex)">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="remove-icon pointer" title="Taak verwijderen" (click)="choresService.removeChoresItem(item.id, listIndex)">
+                        <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
                 </div>     
 
@@ -46,7 +54,7 @@
                     Naam: &nbsp;
                 </div>
                 <div class="chore-name-input">
-                    <input [(ngModel)]="choresService.newChore['name']">
+                    <input [(ngModel)]="choresService.newChore['name']" (change)="choresService.setUpdateAsItem(true)">
                 </div>
             </div>
 
@@ -56,7 +64,7 @@
                     Iedere: &nbsp;
                 </div>
                 <div class="chore-interval-number-input">
-                    <select [(ngModel)]="choresService.newChore['recurrenceAmount']">
+                    <select [(ngModel)]="choresService.newChore['recurrenceAmount']" (change)="choresService.setUpdateAsItem(false)">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -66,7 +74,7 @@
                     </select>
                 </div>
                 <div class="chore-interval-input">
-                    <select [(ngModel)]="choresService.newChore['recurrenceInterval']">
+                    <select [(ngModel)]="choresService.newChore['recurrenceInterval']" (change)="choresService.setUpdateAsItem(false)">
                         <option value="day">{{choresService.newChore['recurrenceAmount'] > 1 ? 'dagen' : 'dag'}}</option>
                         <option value="week">{{choresService.newChore['recurrenceAmount'] > 1 ? 'weken' : 'week'}}</option>
                         <option value="month">{{choresService.newChore['recurrenceAmount'] > 1 ? 'maanden' : 'maand'}}</option>
@@ -76,8 +84,11 @@
             </div>
             
         </div>
-        <div class="submit-button">
+        <div class="submit-button" *ngIf="!editChore; else updateChore">
             <button (click)="choresService.addChoresItem(); closePopup($event.target)">Toevoegen</button>
         </div>
+        <ng-template #updateChore id="updateChore">
+            <button (click)="choresService.updateChoresItem(null, null, editChoreIndex); closePopup($event.target)">Bijwerken</button>
+        </ng-template>
     </div>
 </popup>

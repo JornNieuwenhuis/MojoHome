@@ -24,24 +24,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @Transactional
-@RequestMapping(value="api/chores/")
+@RequestMapping(value = "api/chores/")
 public class ChoresRepo {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final String[] types = {"urgent", "comingUp", "noHurry"};
-    private final String lowUrgency  = types[2];  
-    private final String midUrgency  = types[1];
+    private final String[] types = { "urgent", "comingUp", "noHurry" };
+    private final String lowUrgency = types[2];
+    private final String midUrgency = types[1];
     private final String highUrgency = types[0];
-    
+
     @PersistenceContext
     EntityManager entityManager;
 
-    /* 
-    * Get choresList
-    */
-    @RequestMapping(value="/getChoresList", method = RequestMethod.GET)
+    /*
+     * Get choresList
+     */
+    @RequestMapping(value = "/getChoresList", method = RequestMethod.GET)
     public List<Chore> getChoresList() {
         TypedQuery<Chore> choresQuery = entityManager.createNamedQuery("get_chores_list", Chore.class);
         List<Chore> result = choresQuery.getResultList();
@@ -57,7 +57,7 @@ public class ChoresRepo {
         List<Chore> tempList = new ArrayList<Chore>();
         for (String type : this.types) {
             for (Chore chore : choresList) {
-                if(chore.getColorClass() == type){
+                if (chore.getColorClass() == type) {
                     tempList.add(chore);
                 }
             }
@@ -65,50 +65,62 @@ public class ChoresRepo {
         return tempList;
     }
 
-    /* 
-    * Get chores by id
-    */
+    /*
+     * Get chores by id
+     */
     private Chore getChoreById(int id) {
         TypedQuery<Chore> choresQuery = entityManager.createNamedQuery("get_chore_by_id", Chore.class);
         choresQuery.setParameter("id", id);
         Chore result = choresQuery.getSingleResult();
-		return result;
+        return result;
     }
 
-    /* 
-    * Create a new task
-    */
-    @RequestMapping(value="/addChoresItem", method = RequestMethod.POST)
-    public List<Chore> addChoresItem(@RequestBody() Chore newChore){
+    /*
+     * Create a new task
+     */
+    @RequestMapping(value = "/addChoresItem", method = RequestMethod.POST)
+    public List<Chore> addChoresItem(@RequestBody() Chore newChore) {
         newChore.setDeadline(new Date());
         Date newDeadline = this.getNewDeadline(newChore);
-        entityManager.merge(
-            new Chore(
-                newChore.getId(), 
-                newChore.getName(), 
-                newChore.getRecurrenceInterval(), 
-                newChore.getRecurrenceAmount(),
-                newDeadline
-            )
-        );
-
+        entityManager.merge(new Chore(newChore.getId(), newChore.getName(), newChore.getRecurrenceInterval(),
+                newChore.getRecurrenceAmount(), newDeadline));
         return this.getChoresList();
     }
 
-    /* 
-    * Create a new task
-    */
-    @RequestMapping(value="/updateChoresItem", method = RequestMethod.POST)
-    public Chore updateChoresItem(@RequestBody() Chore updatedChore){
-        return entityManager.merge(
+    /*
+     * Create a new task
+     */
+    @RequestMapping(value = "/updateChore", method = RequestMethod.POST)
+    public List<Chore> updateChore(@RequestBody() Chore updatedChore) {
+        Date deadline    = updatedChore.getDeadline();
+        entityManager.merge(
             new Chore(
                 updatedChore.getId(), 
                 updatedChore.getName(), 
                 updatedChore.getRecurrenceInterval(), 
                 updatedChore.getRecurrenceAmount(),
-                updatedChore.getDeadline()
+                deadline
             )
         );
+        return this.getChoresList();
+    }
+
+    /*
+     * Create a new task
+     */
+    @RequestMapping(value = "/updateChoreAsItem", method = RequestMethod.POST)
+    public List<Chore> updateChoreAsItem(@RequestBody() Chore updatedChore) {
+        Date deadline = this.getNewDeadline(updatedChore);
+        entityManager.merge(
+            new Chore(
+                updatedChore.getId(), 
+                updatedChore.getName(), 
+                updatedChore.getRecurrenceInterval(), 
+                updatedChore.getRecurrenceAmount(),
+                deadline
+            )
+        );
+        return this.getChoresList();
     }
 
     /* 
@@ -133,7 +145,7 @@ public class ChoresRepo {
     public List<Chore> completeChore(@RequestBody() Chore targetChore){
         Chore chore = this.getChoreById(targetChore.getId());       
         chore.setDeadline(this.getNewDeadline(chore));
-        this.updateChoresItem(chore);
+        this.updateChore(chore);
 		return this.getChoresList();
     }
 
@@ -143,6 +155,8 @@ public class ChoresRepo {
     private Date getNewDeadline(Chore chore) {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
+        logger.info("xxxxx");
+        logger.info(chore.getDeadline().toString());
 
         switch (chore.getRecurrenceInterval()) {
             case "day":
@@ -171,6 +185,7 @@ public class ChoresRepo {
         Map<String, String> result = new HashMap<String, String>();
         
         Calendar deadlineCalendar = Calendar.getInstance();
+        
         deadlineCalendar.setTime(chore.getDeadline());
         deadlineCalendar.add(Calendar.DAY_OF_MONTH, 1);
 

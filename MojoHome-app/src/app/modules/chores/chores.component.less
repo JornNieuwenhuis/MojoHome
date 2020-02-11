@@ -8,30 +8,91 @@
     overflow-y: auto;
 
     .chores-item:hover{
+
         background-color: white !important;
-        transition: background-color 300ms ease-in-out;
+
+        .item-input{
+            input:disabled{
+                background-color: white !important;
+            }
+        }
+
+        .remove-icon, .edit-icon{
+            i{
+                opacity: .5;
+                color: @greyColorLight;
+            }
+        }
+        .remove-icon{
+            i:hover{
+                color: red;
+            }
+        }
+        .edit-icon{
+            i:hover{
+                color: @greyColor;
+            }
+        }
     }
 
     .chores-item{
 
         position: relative;
-        background-color: rgb(238, 238, 238);
+        background-color: @inactiveRow;
         max-width: calc(100% - 10px);
         height: 40px;
         margin: 5px;
         padding-top: 4px;
-        background-color: ;
+
+        .remove-icon, .edit-icon{
+            display: inline-block;
+            position: absolute;
+            top: 24px;
+            right: 4px;
+            color: @inactiveRow;
+            i{
+                opacity: 0;
+                transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out;
+                transition-delay: 750ms;
+            }
+        }
+
+        .edit-icon{
+            right: 22px;
+        }
+
+        input.urgent{
+            color: red;
+        }
+
+        input.comingUp{
+            color: orange;
+        }
+
+        input.noHurry{
+            color: green;
+        }
 
         .complete-item{
-            background-color: @accentRed !important;
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            display: inline-block;
-            height: 20px;
-            width: 20px;
-            opacity: .5;
-            transition: opacity 250ms ease-in-out;
+
+            &.urgent{
+                background-color: @urgentColor;
+            }
+            &.comingUp {
+                background-color: @comingUpColor;
+            }
+            &.noHurry{
+                background-color: @noHurryColor;
+            }
+        }
+
+        .complete-item:hover{
+            background-color: white;
+
+            i{
+                color: @noHurryColor;
+                opacity: 1;
+            }
         }
 
         .recurrence{
@@ -56,41 +117,28 @@
                 width: 100%;
             }
 
+            input:disabled{
+                background-color: @inactiveRow !important;
+            }
+
             input.urgent{
-                color: red;
+                color: @urgentColor;
             }
 
             input.comingUp{
-                color: orange;
+                color: @comingUpColor;
             }
 
             input.noHurry{
-                color: green;
-            }
-
-            input:focus{
-                outline: red;
-            }
-
-            input:disabled{
-                background-color: white;
+                color: @noHurryColor;
             }
         }
     }
 }
 
-.buttons-bar{
-    position: absolute;
-    top: -28px;
-    right: 72px;
-}
-
 popup{
 
     .content{
-        .title{
-
-        }
         .add-chore-container{
 
             height: 100px;

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "chores")
-@NamedQuery(name = "get_chores_list", query = "select c from Chore c")
+@NamedQuery(name = "get_chores_list", query = "select c from Chore c order by deadline")
 @NamedQuery(name = "get_chore_by_id", query = "select c from Chore c where c.id = :id")
 public class Chore {
 
@@ -137,5 +137,18 @@ public class Chore {
      */
     public void setDaysRemaining(int daysRemaining) {
         this.daysRemaining = daysRemaining;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+
+    @Override
+    public String toString() {
+        return "Chore [colorClass=" + colorClass + ", daysRemaining=" + daysRemaining + ", deadline=" + deadline
+                + ", id=" + id + ", name=" + name + ", recurrenceAmount=" + recurrenceAmount + ", recurrenceInterval="
+                + recurrenceInterval + "]";
     }
 }
