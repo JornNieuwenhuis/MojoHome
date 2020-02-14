@@ -1,34 +1,39 @@
 @import '../../../core/default.less';
 
 .header{
+
     background-color: white;
     height: 100%;
     display: inline-block;
     width: 100%;
     transition: background-color 1s ease-in-out;
     text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .header:hover h1{
     text-transform: uppercase;
-    width: 250px;
-    color: @mainBlue;
+    width: 275px;
+    color: @mainGreen;
+    letter-spacing: 6px;
 }
 
 #title-header.startup{
     text-transform: uppercase;
     width: 100%;
-    color: @accentRed;
+    color: @mainGreen;
+    letter-spacing: 90px;
 }
 
 h1{
     cursor: pointer;
-    color: @mainGreen;
+    color: @mainBlue;
     font-size: 32px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-transform: lowercase;
     width: 220px;
-    transition: width 1s ease-in-out, color 2s ease-in-out;
+    transition: width 1s ease-in-out, color 2s ease-in-out, letter-spacing 1s ease-in-out;
 }
 
 .content{

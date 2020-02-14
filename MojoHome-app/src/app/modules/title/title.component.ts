@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Inject } from '@angular/core';
 
 @Component({
     selector: 'app-title',
@@ -7,22 +7,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TitleComponent implements OnInit {
 
+    private titleHeaderElement;
+
+    @HostListener("window:scroll", [])
+    onWindowScroll() {
+        if(window.pageYOffset > 0) {
+            this.addStartupClass();
+        } else {
+            this.removeStartupClass();
+        }
+    }
+
     constructor() { }
 
     ngOnInit() {
-        this.startup();
-
-
+        this.titleHeaderElement = document.getElementById('title-header');
+        this.startupAnimation();
     }
 
-    public startup() {
+    public startupAnimation() {
         setTimeout(() => {
-            document.getElementById('title-header').classList.add('startup');
+            
+            this.addStartupClass();
 
             setTimeout(() => {
-                document.getElementById('title-header').classList.remove('startup');
+                this.removeStartupClass();
             }, 1500);
+
         }, 50);
+    }
+
+    private addStartupClass() {
+        this.titleHeaderElement.classList.add('startup');
+    }
+
+    private removeStartupClass() {
+        this.titleHeaderElement.classList.remove('startup');
     }
 
 }

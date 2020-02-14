@@ -53,9 +53,15 @@ export class ChoresComponent implements OnInit {
     }
 
 	public showPopup(target, index?){
-        this.choresService.setUpdateAsItem(false);
+        this.choresService.setGenerateNewDeadline(false);
         this.editChore = false;
-        if(index){
+
+        if(!index){
+            this.choresService.resetNewChoreValues();
+        }
+
+        if(index >= 0){
+            this.choresService.setGenerateNewDeadline(true);
             this.editChore = true;
             this.editChoreIndex = index;
             this.choresService.newChore = this.choresService.choresList[index];

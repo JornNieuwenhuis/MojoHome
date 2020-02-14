@@ -34,6 +34,8 @@ public class ChoresRepo {
     private final String lowUrgency = types[2];
     private final String midUrgency = types[1];
     private final String highUrgency = types[0];
+    private final int lowRatioPoint = 15;
+    private final int highRatioPoint = 30;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -108,8 +110,8 @@ public class ChoresRepo {
     /*
      * Create a new task
      */
-    @RequestMapping(value = "/updateChoreAsItem", method = RequestMethod.POST)
-    public List<Chore> updateChoreAsItem(@RequestBody() Chore updatedChore) {
+    @RequestMapping(value = "/updateWithNewDeadline", method = RequestMethod.POST)
+    public List<Chore> updateWithNewDeadline(@RequestBody() Chore updatedChore) {
         Date deadline = this.getNewDeadline(updatedChore);
         entityManager.merge(
             new Chore(
@@ -155,8 +157,6 @@ public class ChoresRepo {
     private Date getNewDeadline(Chore chore) {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
-        logger.info("xxxxx");
-        logger.info(chore.getDeadline().toString());
 
         switch (chore.getRecurrenceInterval()) {
             case "day":
@@ -205,7 +205,7 @@ public class ChoresRepo {
         int totalDays = this.getTotalDays(chore.getRecurrenceInterval(), chore.getRecurrenceAmount());
 
         double ratio = (((double) daysRemaining) / ((double) totalDays)) * 100;
-        String colorClass = ratio <= 34 ? this.highUrgency : (ratio <= 67 ? this.midUrgency : this.lowUrgency);
+        String colorClass = ratio <= this.lowRatioPoint ? this.highUrgency : (ratio <= this.highRatioPoint ? this.midUrgency : this.lowUrgency);
         
         result.put("colorClass", colorClass);
         result.put("daysRemaining", Long.toString(daysRemaining));

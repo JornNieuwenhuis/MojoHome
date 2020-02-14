@@ -11,13 +11,14 @@
     z-index: 2000;
 
     .popup-container{
+
         position: fixed;
         top: 20%;
-        height: 65%;
         background-color: white;
         z-index: 1001;
-        left: 20%;
-        right: 20%;
+        left: 30%;
+        right: 30%;
+        border: 15px solid white;
     
         .button-close{
             text-align: right;
@@ -36,4 +37,16 @@
 
 #todo-popup > .popup-container, #chores-popup > .popup-container{
     height: 33% !important;
+}
+
+#chores-popup > .popup-container{
+    background-color: @accentOrange;
+}
+
+#todo-popup > .popup-container{
+    background-color: @mainGreen;
+}
+
+#calcubread-popup > .popup-container{
+    background-color: @mainBlue;
 }

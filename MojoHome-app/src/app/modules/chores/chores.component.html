@@ -54,7 +54,7 @@
                     Naam: &nbsp;
                 </div>
                 <div class="chore-name-input">
-                    <input [(ngModel)]="choresService.newChore['name']" (change)="choresService.setUpdateAsItem(true)">
+                    <input [(ngModel)]="choresService.newChore['name']" (change)="choresService.setGenerateNewDeadline(false)">
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                     Iedere: &nbsp;
                 </div>
                 <div class="chore-interval-number-input">
-                    <select [(ngModel)]="choresService.newChore['recurrenceAmount']" (change)="choresService.setUpdateAsItem(false)">
+                    <select [(ngModel)]="choresService.newChore['recurrenceAmount']" (change)="choresService.setGenerateNewDeadline(true)">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -74,7 +74,7 @@
                     </select>
                 </div>
                 <div class="chore-interval-input">
-                    <select [(ngModel)]="choresService.newChore['recurrenceInterval']" (change)="choresService.setUpdateAsItem(false)">
+                    <select [(ngModel)]="choresService.newChore['recurrenceInterval']" (change)="choresService.setGenerateNewDeadline(true)">
                         <option value="day">{{choresService.newChore['recurrenceAmount'] > 1 ? 'dagen' : 'dag'}}</option>
                         <option value="week">{{choresService.newChore['recurrenceAmount'] > 1 ? 'weken' : 'week'}}</option>
                         <option value="month">{{choresService.newChore['recurrenceAmount'] > 1 ? 'maanden' : 'maand'}}</option>

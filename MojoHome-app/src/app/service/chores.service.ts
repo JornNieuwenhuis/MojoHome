@@ -9,7 +9,7 @@ export class ChoresService {
     public  choresList: any = [];
     private baseUrl: string = '//localhost:8080/api/chores/';
     public newChore = [];
-    public updateAsItem: boolean;
+    public generateNewDeadline: boolean;
 
     constructor(private http: HttpClient) { }
 
@@ -61,8 +61,8 @@ export class ChoresService {
         return promise;
     }
 
-    public setUpdateAsItem(value: boolean){
-        this.updateAsItem = value;
+    public setGenerateNewDeadline(value: boolean){
+        this.generateNewDeadline = value;
     }
 
     /* 
@@ -70,7 +70,7 @@ export class ChoresService {
     */
     public updateChoresItem(newValue: any, fieldname: string, listIndex: number) {
         let updatedChore;
-        if(!this.updateAsItem){
+        if(!this.generateNewDeadline){
             updatedChore = this.choresList[listIndex];
             updatedChore[fieldname] = newValue; 
         }
@@ -78,17 +78,16 @@ export class ChoresService {
             updatedChore = this.newChore;
         }
 
-        if(!this.updateAsItem){
+        if(this.generateNewDeadline){
             let promise = new Promise((resolve, reject) => {
-                this.http.post(this.baseUrl + 'updateChore', 
+                this.http.post(this.baseUrl + 'updateWithNewDeadline', 
                                                             { 
                                                                 'id':                 updatedChore["id"], 
                                                                 'name':               updatedChore["name"], 
                                                                 'recurrenceInterval': updatedChore["recurrenceInterval"],
                                                                 'recurrenceAmount':   updatedChore["recurrenceAmount"],
                                                                 'choreCreationDate':  updatedChore["choreCreationDate"],
-                                                                'lastCompletionDate': updatedChore["lastCompletionDate"],
-                                                                'deadline':           updatedChore["deadline"]
+                                                                'lastCompletionDate': updatedChore["lastCompletionDate"]
                                                             })
                     .toPromise()
                     .then(
@@ -105,14 +104,15 @@ export class ChoresService {
         }
 
         let promise = new Promise((resolve, reject) => {
-            this.http.post(this.baseUrl + 'updateChoreAsItem', 
+            this.http.post(this.baseUrl + 'updateChore', 
                                                         { 
                                                             'id':                 updatedChore["id"], 
                                                             'name':               updatedChore["name"], 
                                                             'recurrenceInterval': updatedChore["recurrenceInterval"],
                                                             'recurrenceAmount':   updatedChore["recurrenceAmount"],
                                                             'choreCreationDate':  updatedChore["choreCreationDate"],
-                                                            'lastCompletionDate': updatedChore["lastCompletionDate"]
+                                                            'lastCompletionDate': updatedChore["lastCompletionDate"],
+                                                            'deadline':           updatedChore["deadline"]
                                                         })
                 .toPromise()
                 .then(
@@ -126,7 +126,6 @@ export class ChoresService {
                 );
         });
         return promise;
-
     }
 
     /* 
@@ -167,5 +166,11 @@ export class ChoresService {
                 );
         });
         return promise;
+    }
+
+    public resetNewChoreValues() {
+        this.newChore["name"] = "";
+        this.newChore["recurrenceAmount"] = 1;
+        this.newChore["recurrenceInterval"] = "day";
     }
 }
