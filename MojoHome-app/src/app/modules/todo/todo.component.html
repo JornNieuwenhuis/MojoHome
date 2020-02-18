@@ -1,9 +1,9 @@
 <div class="content">
     <div class="buttons-bar">
-        <div class="cleanup pointer" (click)="todoService.cleanup()" title="Taken opschonen">
+        <div id="refresh-todo" class="cleanup pointer" (click)="todoService.cleanup()" title="Taken opschonen">
             <i class="fa fa-refresh" aria-hidden="true"></i>
         </div>
-        <div class="add-item pointer" (click)="showPopup($event.target)" title="Nieuwe taak">
+        <div id="add-todo-item" class="add-item pointer" (click)="showPopup($event.target)" title="Nieuwe taak">
             <i class="fa fa-plus"></i>
         </div>
     </div>

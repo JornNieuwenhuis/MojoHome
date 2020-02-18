@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 
 
@@ -10,13 +10,16 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class MainComponent implements OnInit {
 
+    //Keeps track of opened sidebars in blocks
+    public openSidebars = [];
+
     public blocksList = [
         { name: "block-1", module: "todo"},       { name: "block-2", module: "chores"},
         { name: "block-3", module: "calcubread"}, { name: "block-4", module: ""},
         { name: "block-5", module: ""},           { name: "block-6", module: ""}
     ]
 
-    constructor() { }
+    constructor(private renderer: Renderer2) { }
 
     public value: string;
 
@@ -25,7 +28,6 @@ export class MainComponent implements OnInit {
             Array.from(document.getElementsByClassName('module')).forEach(module => {
                 module.classList.remove('startup');
             });
-        }, 1000);
+        }, 250);
     }
-
 }

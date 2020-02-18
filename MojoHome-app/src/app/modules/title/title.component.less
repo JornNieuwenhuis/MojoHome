@@ -2,7 +2,7 @@
 
 .header{
 
-    background-color: white;
+    background-color: black;
     height: 100%;
     display: inline-block;
     width: 100%;
@@ -10,20 +10,33 @@
     text-align: right;
     overflow: hidden;
     white-space: nowrap;
+    position: relative;
+
+    h1::before{
+        vertical-align: middle;
+        color: @mainGreen;
+        content: ' ~ ';
+    }
+
+    h1::after{
+        vertical-align: middle;
+        color: @mainGreen;
+        content: ' ~ ';
+    }
 }
 
 .header:hover h1{
     text-transform: uppercase;
     width: 275px;
-    color: @mainGreen;
+    color: @accentOrange;
     letter-spacing: 6px;
 }
 
 #title-header.startup{
     text-transform: uppercase;
     width: 100%;
-    color: @mainGreen;
-    letter-spacing: 90px;
+    color: @accentOrange;
+    letter-spacing: 6px;
 }
 
 h1{

@@ -1,83 +1,53 @@
 @import '../../../core/default.less';
 
-block-view{
-  height: 430px;
-}
-
 .title {
     position: sticky;
     top: 0;
-    z-index: 1000;
+	z-index: 1000;
+	background-color: black;
 }
 
 .grid {
-  min-width: 800px;
-  overflow-x: auto;
-
-  /* Grid Fallback */
-  display: flex;
-  flex-wrap: wrap;
-  
-  /* Supports Grid */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  grid-auto-rows: minmax(150px, auto);
-  grid-gap: 1em;
+	background-color: black;
+	min-width: @blockWidth;
+	overflow-x: auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(@blockWidth, 1fr));
+	grid-auto-rows: minmax(150px, auto);
+	grid-gap: 1em;
 }
 
 .module {
-  /* Demo-Specific Styles */
-  background-color: @mainBlue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 450px;
-  
-  /* Flex Fallback */
-  margin-left: 5px;
-  margin-right: 5px;
-  flex: 1 1 200px;
-
-  transition: opacity 300ms linear;
-}
-
-/* If Grid is supported, remove the margin we set for the fallback */
-@supports (display: grid) {
-  .module {
-    margin: 0;
-  }
+	background-color: @mainBlue;
+	transition: opacity 300ms linear;
 }
 
 .block-1{
-  background-color: @mainGreen;
+	background-color: @mainGreen;
+}
+
+.block-1.active, .block-2.active, .block-3.active{
+	grid-column: 1 / end;
+	grid-row: 1 / 2;
 }
 
 .block-2{
-  background-color: @accentOrange;
+	background-color: @accentOrange;
 }
 
 .block-3{
-  background-color: @mainBlue;
+	background-color: @mainBlue;
 }
 
 .unused-block{
-  opacity: .2;
-  transition: opacity 1.5s ease-in-out;
+	opacity: .2;
+	transition: opacity 1.5s ease-in-out;
 }
 
 .unused-block:hover{
-  opacity: .6;
+  	opacity: .6;
 }
 
 .startup{
     opacity: 0;
-}
-
-@media only screen and (max-width: 1500px) {
-  .grid {
-    display: block;
-  }
-  .module{
-    margin-bottom: 1em;
-  }
 }

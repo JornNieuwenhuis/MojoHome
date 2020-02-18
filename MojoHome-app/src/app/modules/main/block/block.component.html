@@ -1,11 +1,6 @@
 <div class="content" [ngClass]="activeBlock == blockName ? 'active' : 'inactive'">
 
-    <div class="title">
-        <h2>{{moduleName}}</h2>
-    </div>
-
     <div class="container">
-
 
         <ng-container [ngSwitch]="moduleName">
             <chores     *ngSwitchCase="'chores'"     clickOutside (activeBlock)="setActiveBlock($event)" [activeBlock]="activeBlock" [blockName]="blockName"></chores>
@@ -14,5 +9,40 @@
         </ng-container>
         
     </div>
-    
+
+    <div class="sidebar">
+
+        <div class="title">
+            <h2>{{moduleName}}</h2>
+        </div>
+
+        <i class="open-sidebar-icon fa fa-angle-left pointer" (click)="showSidebar($event.target)"></i>
+        <i class="hide hide-sidebar-icon fa fa-angle-right pointer" (click)="hideSidebar($event.target)"></i>
+
+        <ng-container *ngIf="moduleName != 'calcubread'; else calcubreadItems">
+            <div class="hide sidebar-menu">
+
+                <i title="Vergroten" class="expand-block fa fa-expand" (click)="activateBlock($event.target)"></i>
+                <i title="Verkleinen" class="contract-block hide fa fa-compress" (click)="deactivateBlock($event.target)"></i>
+
+                <ng-container *ngIf="moduleName == 'todo'">
+                    <i title="Taken opschonen" class="fa fa-refresh" (click)="showPopup('refresh')"></i>
+                </ng-container>
+
+                <i title="Nieuwe {{moduleName}}" class="fa fa-plus" (click)="showPopup(moduleName)"></i>
+            </div>
+        </ng-container>
+
+        <ng-template #calcubreadItems>
+            <div class="hide sidebar-menu">
+
+                <i title="Vergroten" class="fa fa-expand" (click)="activateBlock($event.target)"></i>
+                <i title="Verkleinen" class="contract-block hide fa fa-compress" (click)="deactivateBlock($event.target)"></i>
+
+                <i title="{{moduleName}} instellingen" class="fa fa-cog" (click)="showPopup(moduleName)"></i>
+            </div>
+        </ng-template>
+
+    </div>
+
 </div>

@@ -17,7 +17,10 @@
 @noHurryColorLight: #7DC184;
 
 @greyColor:         #333333;
-@greyColorLight:    #6c7783;
+@greyColorLight:    #8f9dac;
+
+@blockHeight:       500px;
+@blockWidth:        500px;
 
 /* width */
 ::-webkit-scrollbar {
@@ -160,4 +163,14 @@ popup{
     popup{
         height: 50%;
     }
+}
+
+i.fa{
+    cursor: pointer;
+    font-weight: 100;
+    transition: color 100ms ease-in-out;
+}
+i.fa:hover{
+    font-weight: 900 !important;
+    color: @accentPurple;
 }

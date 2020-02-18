@@ -194,7 +194,7 @@ public class ChoresRepo {
 
         long end   = deadlineCalendar.getTimeInMillis();
         long start = currentDate.getTimeInMillis();
-        long daysRemaining = TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
+        long daysRemaining = start > end ? 0 : TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
 
         if(daysRemaining == 0) { 
             result.put("colorClass", this.highUrgency); 
